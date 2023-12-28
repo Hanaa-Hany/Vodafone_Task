@@ -2,6 +2,7 @@ package com.hanaahany.task.repo
 
 import com.hanaahany.task.model.response.allrepo.AllRepoResponse
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
+import com.hanaahany.task.model.ui.repodetails.RepoDetails
 import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.remote.RemoteSource
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +33,26 @@ class RepoImp private constructor(
             emit(ApiState.Failure(it.message!!))
         }
 
+    }
+
+    override suspend fun getRepo(login: String, name: String): Flow<ApiState<RepoDetails>> {
+        return flow {
+
+            emit(ApiState.Loading)
+            val allRepo =
+                remoteSource.getRepo(login,name)
+            if (allRepo.isSuccessful) {
+                remoteSource.getRepo(login,name).body()
+                    ?.let {
+                        emit(ApiState.Success(it.convertToRepoDetails()))
+                    }
+            } else {
+                emit(ApiState.Failure(allRepo.message()))
+            }
+
+        }.catch {
+            emit(ApiState.Failure(it.message!!))
+        }
     }
 
     companion object {
