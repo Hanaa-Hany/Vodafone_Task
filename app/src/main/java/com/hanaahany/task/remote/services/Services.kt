@@ -1,6 +1,7 @@
 package com.hanaahany.task.remote.services
 
 import com.hanaahany.task.model.response.allrepo.AllRepoResponse
+import com.hanaahany.task.model.response.issues.IssuesResponse
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,4 +14,8 @@ interface Services {
     @GET("repos/{owner}/{repo}")
     suspend fun getRepo(@Path("owner") owner:String,
                          @Path("repo") repo: String): Response<RepoDetailsResponse>
+
+    @GET("repos/{owner}/{repo}/issues")
+    suspend fun getIssues(@Path("owner") owner:String,
+                        @Path("repo") repo: String): Response<IssuesResponse>
 }

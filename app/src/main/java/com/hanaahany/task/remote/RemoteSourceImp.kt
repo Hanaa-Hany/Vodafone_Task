@@ -1,6 +1,7 @@
 package com.hanaahany.task.remote
 
 import com.hanaahany.task.model.response.allrepo.AllRepoResponse
+import com.hanaahany.task.model.response.issues.IssuesResponse
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import com.hanaahany.task.remote.services.Network
 import retrofit2.Response
@@ -16,6 +17,10 @@ class RemoteSourceImp private constructor() : RemoteSource {
 
     override suspend fun getRepo(login: String, name: String): Response<RepoDetailsResponse> {
         return network.getRepo(login,name)
+    }
+
+    override suspend fun getIssues(login: String, name: String): Response<IssuesResponse> {
+        return network.getIssues(login,name)
     }
 
     companion object {

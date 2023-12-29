@@ -3,6 +3,7 @@ package com.hanaahany.task.repo
 import android.widget.Toast
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
+import com.hanaahany.task.model.ui.issues.IssuesItem
 import com.hanaahany.task.model.ui.repodetails.RepoDetails
 import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.remote.RemoteSource
@@ -53,6 +54,26 @@ class RepoImp private constructor(
         }.catch {
             emit(ApiState.Failure(it.message!!))
 
+        }
+    }
+
+    override suspend fun getIssues(login: String, name: String): Flow<ApiState<List<IssuesItem>>> {
+        return flow {
+
+            emit(ApiState.Loading)
+            val allRepo =
+                remoteSource.getIssues(login,name)
+            if (allRepo.isSuccessful) {
+                remoteSource.getIssues(login,name).body()
+                    ?.let {
+                        emit(ApiState.Success(it.convertToIssuesItem()))
+                    }
+            } else {
+                emit(ApiState.Failure(allRepo.message()))
+            }
+
+        }.catch {
+            emit(ApiState.Failure(it.message!!))
         }
     }
 
