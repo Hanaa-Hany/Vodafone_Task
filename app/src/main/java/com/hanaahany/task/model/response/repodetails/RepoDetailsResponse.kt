@@ -2,7 +2,6 @@ package com.hanaahany.task.model.response.repodetails
 
 
 import com.google.gson.annotations.SerializedName
-import com.hanaahany.task.model.response.allrepo.OwnerResponse
 
 data class RepoDetailsResponse(
     @SerializedName("allow_forking")
@@ -120,7 +119,7 @@ data class RepoDetailsResponse(
     @SerializedName("open_issues_count")
     val openIssuesCount: Int?,
     @SerializedName("owner")
-    val owner: OwnerResponse?,
+    val owner: Owner?,
     @SerializedName("private")
     val `private`: Boolean?,
     @SerializedName("pulls_url")
