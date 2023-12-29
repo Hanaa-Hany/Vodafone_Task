@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Vodafone Task"
                 style="@style/main_title"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:id="@+id/tv_repo_name"
                 app:layout_constraintStart_toEndOf="@id/image_repo"
                 app:layout_constraintTop_toBottomOf="@id/tv_repo_owner" />

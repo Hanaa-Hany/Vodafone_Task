@@ -42,7 +42,7 @@ class IssueAdapter (var context: Context) :
                 tvIssueName.text=currentItem.title
                 tvDesc.text=currentItem.body
                 tvIssueState.text=currentItem.state
-                tvIssueNumber.text=currentItem.number?.toString()
+                tvIssueNumber.text="#${currentItem.number?.toString()}"
                 Glide.with(context).load(currentItem.user?.avatarUrl).into(imageOwner)
 
 

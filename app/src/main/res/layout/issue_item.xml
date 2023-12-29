@@ -39,7 +39,7 @@
                 android:id="@+id/tv_issue_state"
                 tools:text="Open"
                 app:layout_constraintTop_toBottomOf="@id/tv_issue_name"
-                style="@style/sub_title"
+
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@drawable/rectangle_text"
                 android:layout_marginTop="@dimen/_20sdp"/>
@@ -53,6 +53,7 @@
                 android:layout_marginTop="@dimen/_10sdp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="@dimen/_10sdp"
                 android:id="@+id/image_owner"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
@@ -64,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/image_owner"
-                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintTop_toTopOf="@id/image_owner"
                 tools:text="Hanaa Hany"
                 app:layout_constraintBottom_toBottomOf="@id/image_owner"
                 android:layout_marginStart="@dimen/_10sdp"

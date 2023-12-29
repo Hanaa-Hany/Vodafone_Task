@@ -67,10 +67,11 @@
         <TextView
             android:id="@+id/tv_description"
             style="@style/sub_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/image_repo_details"
             app:layout_constraintTop_toBottomOf="@id/tv_star_repo_details"
             tools:text="test" />
@@ -80,11 +81,10 @@
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_begin="17dp"
+            app:layout_constraintGuide_begin="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,7 +92,7 @@
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintGuide_begin="386dp" />
@@ -113,7 +113,8 @@
             android:layout_height="wrap_content"
             android:text="@string/issues"
             app:layout_constraintBottom_toBottomOf="@id/guideline4"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_20sdp"
             app:layout_constraintStart_toEndOf="@id/guideline" />
 
         <androidx.constraintlayout.widget.Guideline
