@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.hanaahany.task.R
@@ -16,8 +17,9 @@ import com.hanaahany.task.ui.details.viewmodel.RepoDetailsViewModel
 import com.hanaahany.task.ui.main.view.MainFragmentDirections
 import com.hanaahany.task.ui.main.view.ReposAdapter
 import com.hanaahany.task.ui.main.viewmodel.MainViewModel
-
-
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetailsViewModel>() {
@@ -38,6 +40,7 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
         observeRepoListState()
 
 
+
     }
 
     private fun observeRepoListState() {
@@ -45,6 +48,10 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
             when (state) {
                 is ApiState.Failure -> {
                     Log.i(TAG, "observeProductListState: failure ${state.msg}")
+                    Log.i(TAG,name)
+                    viewModel.getRepoDetailsFromDB(login)
+                    observeRepo()
+
                 }
 
                 ApiState.Loading -> {
@@ -59,6 +66,8 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
                     binding.tvStarRepoDetails.text=state.data.owner?.id.toString()
                     binding.tvDescription.text=state.data.description
                     Glide.with(this).load(state.data.owner?.avatarUrl).into(binding.imageRepoDetails)
+                    viewModel.saveRepoDetailsFromDB(state.data)
+                    viewModel.updateRepoDetailsFromDB(state.data)
                     binding.btnShowIssue.setOnClickListener {
                         val action= RepoDetailsFragmentDirections.actionRepoDetailsFragmentToIssueFragment(login,name)
                         Navigation.findNavController(requireView()).navigate(action)
@@ -68,6 +77,19 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
                 }
             }
         }
+    private fun observeRepo(){
+          lifecycleScope .launch {
+            viewModel.repoDBDetails.collect{
+                binding.tvForkRepoDetails.text=it.forks.toString()
+                binding.tvRepoName.text=it.name
+                binding.tvOwnerName.text=it.owner?.login
+                binding.tvStarRepoDetails.text=it.owner?.id.toString()
+                binding.tvDescription.text=it.description
+                Glide.with(this@RepoDetailsFragment).load(it.owner?.avatarUrl).into(binding.imageRepoDetails)
+            }
+        }
+    }
+
 
 
 }
