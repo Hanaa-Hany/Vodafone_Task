@@ -17,7 +17,31 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/issue_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/load"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:id="@+id/lotti_load"
+            android:visibility="gone"/>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/no_internet"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:id="@+id/lotti_error"
+            android:visibility="gone"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/empty"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:id="@+id/lotti_empty"
+            android:visibility="gone"/>
 
     </FrameLayout>
 </layout>

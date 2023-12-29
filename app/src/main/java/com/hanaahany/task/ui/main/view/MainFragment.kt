@@ -31,13 +31,19 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
             when (state) {
                 is ApiState.Failure -> {
                     Log.i(TAG, "observeProductListState: failure ${state.msg}")
+                    binding.lottiError.visibility=View.VISIBLE
+                    binding.lottiLoad.visibility=View.GONE
                 }
 
                 ApiState.Loading -> {
                     Log.i(TAG, "observeProductListState: loading...")
+                    binding.lottiLoad.visibility=View.VISIBLE
+                    binding.lottiError.visibility=View.GONE
                 }
 
                 is ApiState.Success -> {
+                    binding.lottiLoad.visibility=View.GONE
+                    binding.lottiError.visibility=View.GONE
                     Log.i(TAG, "observeProductListState: success ${state.data}")
                     if (state.data.isEmpty()) {
 

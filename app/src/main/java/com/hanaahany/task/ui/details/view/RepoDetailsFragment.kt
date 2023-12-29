@@ -47,6 +47,9 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
         collectLatestFlowOnLifecycle(viewModel.repoDetails) { state ->
             when (state) {
                 is ApiState.Failure -> {
+                    binding.lottiLoad.visibility=View.GONE
+                    binding.lottiError.visibility=View.GONE
+                    binding.btnShowIssue.visibility=View.GONE
                     Log.i(TAG, "observeProductListState: failure ${state.msg}")
                     Log.i(TAG,name)
                     viewModel.getRepoDetailsFromDB(login)
@@ -56,9 +59,14 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
 
                 ApiState.Loading -> {
                     Log.i(TAG, "observeProductListState: loading...")
+                    binding.lottiLoad.visibility=View.VISIBLE
+                    binding.lottiError.visibility=View.GONE
+
                 }
 
                 is ApiState.Success -> {
+                    binding.lottiLoad.visibility=View.GONE
+                    binding.lottiError.visibility=View.GONE
                   Log.i(TAG,"${state.data}")
                     binding.tvForkRepoDetails.text=state.data.forks.toString()
                     binding.tvRepoName.text=state.data.name
