@@ -10,7 +10,7 @@ interface Services {
     @GET("repositories")
     suspend fun getAllRepo(): Response<AllRepoResponse>
 
-    @GET("https://api.github.com/repos/{login}/{name}")
-    suspend fun getRepo( @Path("login") login: String,
-                         @Path("name") name: String): Response<RepoDetailsResponse>
+    @GET("repos/{owner}/{repo}")
+    suspend fun getRepo(@Path("owner") owner:String,
+                         @Path("repo") repo: String): Response<RepoDetailsResponse>
 }

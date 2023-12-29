@@ -11,11 +11,11 @@ class RemoteSourceImp private constructor() : RemoteSource {
 
 
     override suspend fun getAllRepo(): Response<AllRepoResponse> {
-        return Network.retrofitService.getAllRepo()
+        return network.getAllRepo()
     }
 
     override suspend fun getRepo(login: String, name: String): Response<RepoDetailsResponse> {
-        return Network.retrofitService.getRepo(login,name)
+        return network.getRepo(login,name)
     }
 
     companion object {
