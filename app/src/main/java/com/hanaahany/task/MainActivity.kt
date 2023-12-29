@@ -36,4 +36,10 @@ class MainActivity : AppCompatActivity() {
 
         }, SPLASH_TIME_OUT)
     }
+    override fun onSupportNavigateUp(): Boolean {
+//        navHostFragment = supportFragmentManager
+//            .findFragmentById(R.id.fragment_container) as NavHostFragment
+//        controller = navHostFragment.navController
+        return controller.navigateUp() || super.onSupportNavigateUp()
+    }
 }
