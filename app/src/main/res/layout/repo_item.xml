@@ -52,10 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Vodafone Task"
-                android:textStyle="bold"
-                android:textSize="@dimen/_18ssp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:textColor="@color/black"
+                style="@style/main_title"
                 android:id="@+id/tv_repo_name"
                 app:layout_constraintStart_toEndOf="@id/image_repo"
                 app:layout_constraintTop_toBottomOf="@id/tv_repo_owner" />

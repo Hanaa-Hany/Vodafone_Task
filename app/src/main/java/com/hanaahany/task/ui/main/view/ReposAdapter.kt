@@ -13,7 +13,7 @@ import com.hanaahany.task.model.response.allrepo.AllRepoResponse
 import com.hanaahany.task.model.response.allrepo.AllRepoResponseItem
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
 
-class ReposAdapter (var context: Context, private val onClick:(Long) -> Unit) :
+class ReposAdapter (var context: Context, private val onClick:(String,String) -> Unit) :
     ListAdapter<AllRepoItem, ReposAdapter.ReposVH>(RecyclerDiffUtilOrdersItem()) {
     private lateinit var binding: RepoItemBinding
 
@@ -49,7 +49,7 @@ class ReposAdapter (var context: Context, private val onClick:(Long) -> Unit) :
 
             }
             itemView.setOnClickListener{
-                //onClick()
+                onClick(currentItem.owner?.login!!,currentItem.name!!)
             }
 
         }

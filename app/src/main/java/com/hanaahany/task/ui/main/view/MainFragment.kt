@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.hanaahany.task.R
 import com.hanaahany.task.databinding.FragmentMainBinding
 import com.hanaahany.task.model.response.allrepo.AllRepoResponse
@@ -49,9 +50,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
                         //cartAdapter.submitList
                         Log.i(TAG,""+state.data)
 
-                        allRepoAdapter = ReposAdapter(requireContext()) {
-//                            val action=OrderFragmentDirections.actionOrderFragmentToOrderDetailsFragment(it)
-//                            Navigation.findNavController(requireView()).navigate(action)
+                        allRepoAdapter = ReposAdapter(requireContext()) {first,second->
+                            val action=MainFragmentDirections.actionMainFragmentToRepoDetailsFragment(first,second)
+                            Navigation.findNavController(requireView()).navigate(action)
                         }
 
                         allRepoAdapter.submitList(state.data)
