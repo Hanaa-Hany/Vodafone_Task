@@ -2,18 +2,13 @@ package com.hanaahany.task.ui.main.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.hanaahany.task.R
 import com.hanaahany.task.databinding.FragmentMainBinding
-import com.hanaahany.task.model.response.allrepo.AllRepoResponse
 import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.ui.base.BaseFragment
 import com.hanaahany.task.ui.main.viewmodel.MainViewModel
-import kotlin.math.log
 
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
@@ -26,12 +21,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getAllRepo()
-        observeProductListState()
+        observeIssueListState()
 
 
     }
 
-    private fun observeProductListState() {
+    private fun observeIssueListState() {
         collectLatestFlowOnLifecycle(viewModel.allRepo) { state ->
             when (state) {
                 is ApiState.Failure -> {

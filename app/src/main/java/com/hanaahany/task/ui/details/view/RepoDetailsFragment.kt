@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.hanaahany.task.R
 import com.hanaahany.task.databinding.FragmentRepoDetailsBinding
 import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.ui.base.BaseFragment
 import com.hanaahany.task.ui.details.viewmodel.RepoDetailsViewModel
+import com.hanaahany.task.ui.main.view.MainFragmentDirections
 import com.hanaahany.task.ui.main.view.ReposAdapter
 import com.hanaahany.task.ui.main.viewmodel.MainViewModel
 
@@ -57,6 +59,10 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
                     binding.tvStarRepoDetails.text=state.data.owner?.id.toString()
                     binding.tvDescription.text=state.data.description
                     Glide.with(this).load(state.data.owner?.avatarUrl).into(binding.imageRepoDetails)
+                    binding.btnShowIssue.setOnClickListener {
+                        val action= RepoDetailsFragmentDirections.actionRepoDetailsFragmentToIssueFragment(login,name)
+                        Navigation.findNavController(requireView()).navigate(action)
+                    }
 
                     }
                 }

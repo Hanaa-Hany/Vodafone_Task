@@ -22,5 +22,19 @@
         <argument
             android:name="login"
             app:argType="string" />
+        <action
+            android:id="@+id/action_repoDetailsFragment_to_issueFragment"
+            app:destination="@id/issueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/issueFragment"
+        android:name="com.hanaahany.task.ui.issues.view.IssueFragment"
+        android:label="IssueFragment" >
+        <argument
+            android:name="login"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>

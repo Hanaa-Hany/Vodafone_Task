@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_5sdp"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:contentPadding="@dimen/_10sdp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/tv_issue_number"
+                tools:text="#1689"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_number"
+                android:id="@+id/tv_issue_name"
+                tools:text="Error Report"
+                style="@style/main_title"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_issue_state"
+                tools:text="Open"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_name"
+                style="@style/sub_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/rectangle_text"
+                android:layout_marginTop="@dimen/_20sdp"/>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_state"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_owner"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                tools:src="@drawable/ic_star"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/image_owner"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                tools:text="Hanaa Hany"
+                app:layout_constraintBottom_toBottomOf="@id/image_owner"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:id="@+id/tv_name_owner"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                tools:text="12/29/2023"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="@id/image_owner"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:id="@+id/tv_date"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_owner"
+                tools:text="this is desc"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:id="@+id/tv_desc"/>
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

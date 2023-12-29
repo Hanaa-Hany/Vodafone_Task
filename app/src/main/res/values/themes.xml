@@ -9,7 +9,6 @@
         <item name="android:textColor">@color/main_text</item>
         <item name="android:textSize">@dimen/_20ssp</item>
         <item name="android:fontFamily">@font/inter_extrabold</item>
-        <item name="android:layout_marginStart">@dimen/_10sdp</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="sub_title">
