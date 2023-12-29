@@ -2,6 +2,7 @@ package com.hanaahany.task.model.ui.repodetails
 
 import com.google.gson.annotations.SerializedName
 import com.hanaahany.task.model.response.repodetails.Owner
+import java.security.AlgorithmParameterGenerator
 
 data class RepoDetails(
     @SerializedName("owner") val owner: Owner?,

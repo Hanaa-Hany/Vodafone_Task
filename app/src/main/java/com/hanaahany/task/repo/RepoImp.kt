@@ -1,6 +1,8 @@
 package com.hanaahany.task.repo
 
 import android.widget.Toast
+import com.hanaahany.task.local.LocalSource
+import com.hanaahany.task.model.entity.RepoDetailsEntity
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
 import com.hanaahany.task.model.ui.issues.IssuesItem
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.flow
 
 class RepoImp private constructor(
     private val remoteSource: RemoteSource,
+    private val localSource: LocalSource
 ) : Repo {
     private val TAG = "TAG RepoImp"
 
@@ -77,12 +80,25 @@ class RepoImp private constructor(
         }
     }
 
+    override fun getRepoDetails(name: String): Flow<RepoDetailsEntity> {
+        return localSource.getRepoDetails(name)
+
+    }
+
+    override suspend fun saveRepoDetails(repoDetailsEntity: RepoDetailsEntity): Long {
+        return localSource.saveRepoDetails(repoDetailsEntity)
+    }
+
+    override suspend fun updateRepoDetails(repoDetailsEntity: RepoDetailsEntity) {
+        return localSource.updateRepoDetails(repoDetailsEntity)
+    }
+
     companion object {
         @Volatile
         private var instance: RepoImp? = null
-        fun getRepoImpInstance(remoteSource: RemoteSource): RepoImp {
+        fun getRepoImpInstance(remoteSource: RemoteSource,localSource: LocalSource): RepoImp {
             return instance ?: synchronized(this) {
-                val instanceHolder = RepoImp(remoteSource)
+                val instanceHolder = RepoImp(remoteSource,localSource)
                 instance = instanceHolder
                 instanceHolder
 

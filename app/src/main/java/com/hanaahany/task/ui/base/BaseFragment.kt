@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.*
+import com.hanaahany.task.local.LocalSourceImp
 
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
@@ -42,8 +43,8 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
         val showProductsViewModelFactory =
             BaseViewModelFactory(
                 RepoImp.getRepoImpInstance(
-                    RemoteSourceImp.getRemoteSourceImpInstance()
-//                    LocalSourceImp.getLocalSourceImpInstance(requireContext())
+                    RemoteSourceImp.getRemoteSourceImpInstance(),
+                    LocalSourceImp.getLocalSourceImpInstance(requireContext())
 
                 )
             )
