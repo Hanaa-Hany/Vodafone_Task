@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Network {
 
-    private val client = OkHttpClient.Builder().addInterceptor(GitHubInterceptor()).build()
+    private val client = OkHttpClient.Builder().build()
     private val retrofit: Retrofit = Retrofit.Builder()
         .client(client)
         .baseUrl(BuildConfig.baseURL)

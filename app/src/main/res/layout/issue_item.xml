@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintTop_toTopOf="@id/image_owner"
                 tools:text="12/29/2023"
                 android:textSize="@dimen/_10ssp"
                 android:textColor="@color/dark_gray"

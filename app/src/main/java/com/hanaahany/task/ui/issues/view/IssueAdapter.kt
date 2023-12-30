@@ -1,15 +1,19 @@
 package com.hanaahany.task.ui.issues.view
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hanaahany.task.databinding.IssueItemBinding
 import com.hanaahany.task.model.ui.issues.IssuesItem
+import com.hanaahany.task.utils.changeDateFormat
+
 
 class IssueAdapter (var context: Context) :
     ListAdapter<IssuesItem, IssueAdapter.IssueVH>(RecyclerDiffUtilOrdersItem()) {
@@ -34,11 +38,13 @@ class IssueAdapter (var context: Context) :
     inner class IssueVH(var binding: IssueItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
+
         fun onBind(currentItem: IssuesItem) {
 
             binding.apply {
+
                 tvNameOwner.text = currentItem?.user?.login
-                tvDate.text=currentItem.createdAt
+                tvDate.text= changeDateFormat(currentItem.createdAt!!)
                 tvIssueName.text=currentItem.title
                 tvDesc.text=currentItem.body
                 tvIssueState.text=currentItem.state
