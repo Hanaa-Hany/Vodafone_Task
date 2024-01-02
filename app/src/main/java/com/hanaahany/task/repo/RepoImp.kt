@@ -21,21 +21,23 @@ class RepoImp private constructor(
 
     override suspend fun getAllRepo(): Flow<ApiState<List<AllRepoItem>>> {
         return flow {
-
             emit(ApiState.Loading)
-            val allRepo =
-                remoteSource.getAllRepo()
-            if (allRepo.isSuccessful) {
-                remoteSource.getAllRepo().body()
-                    ?.let {
-                        emit(ApiState.Success(it.convertToAllRepoResponseItem()))
-                    }
+
+            val allRepoResponse = remoteSource.getAllRepo()
+
+            if (allRepoResponse.isSuccessful) {
+                val allRepoItems = allRepoResponse.body()
+                if (allRepoItems != null) {
+                    emit(ApiState.Success(allRepoItems.convertToAllRepoResponseItem()))
+                } else {
+                    emit(ApiState.Failure("Response body is null"))
+                }
             } else {
-                emit(ApiState.Failure(allRepo.message()))
+                emit(ApiState.Failure(allRepoResponse.message()))
             }
 
-        }.catch {
-            emit(ApiState.Failure(it.message!!))
+        }.catch { e ->
+            emit(ApiState.Failure(e.message ?: "An unexpected error occurred"))
         }
 
     }
