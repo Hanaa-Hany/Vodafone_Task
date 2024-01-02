@@ -8,5 +8,6 @@
     <color name="dark_gray">#7C7C7C</color>
     <color name="sub_text">#515C6F</color>
     <color name="main_text">#393B3E</color>
+    <color name="shimmer_color">#C6BABA</color>
 
 </resources>

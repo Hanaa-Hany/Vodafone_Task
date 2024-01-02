@@ -19,6 +19,21 @@
             tools:listitem="@layout/repo_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/fragment_main_shammer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <include layout="@layout/fragment_main_shimmer" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
@@ -36,6 +51,14 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             android:id="@+id/lotti_error"
+            android:visibility="gone"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/empty"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:id="@+id/lotti_empty"
             android:visibility="gone"/>
 
         <ProgressBar android:id="@+id/progressbar"

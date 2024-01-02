@@ -75,20 +75,25 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 
                 ApiState.Loading -> {
                     Log.i(TAG, "observeProductListState: loading...")
-                    binding.lottiLoad.visibility = View.VISIBLE
+                    binding.lottiLoad.visibility = View.GONE
                     binding.lottiError.visibility = View.GONE
+                    binding.fragmentMainShammer.visibility=View.VISIBLE
+                    binding.fragmentMainShammer.startShimmerAnimation()
                 }
 
                 is ApiState.Success -> {
+                    binding.fragmentMainShammer.visibility=View.GONE
                     binding.lottiLoad.visibility = View.GONE
                     binding.lottiError.visibility = View.GONE
                     Log.i(TAG, "observeProductListState: success ${state.data}")
                     if (state.data.isEmpty()) {
 
+                        binding.fragmentMainShammer.stopShimmerAnimation()
+                        binding.lottiEmpty.visibility=View.VISIBLE
                     } else {
                         //cartAdapter.submitList
                         Log.i(TAG, "" + state.data)
-
+                        binding.fragmentMainShammer.stopShimmerAnimation()
                         allRepoAdapter = ReposAdapter(requireContext()) { first, second ->
                             val action =
                                 MainFragmentDirections.actionMainFragmentToRepoDetailsFragment(
