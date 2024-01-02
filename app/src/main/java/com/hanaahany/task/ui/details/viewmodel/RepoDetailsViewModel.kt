@@ -3,6 +3,7 @@ package com.hanaahany.task.ui.details.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import com.hanaahany.task.model.entity.RepoDetailsEntity
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import com.hanaahany.task.model.ui.repodetails.RepoDetails
@@ -10,6 +11,7 @@ import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.repo.Repo
 import com.hanaahany.task.repo.convertToRepoDetails
 import com.hanaahany.task.repo.convertToRepoDetailsEntity
+import com.hanaahany.task.ui.details.view.RepoDetailsFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

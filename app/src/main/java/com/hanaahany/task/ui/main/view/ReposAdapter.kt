@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.hanaahany.task.databinding.RepoItemBinding
-import com.hanaahany.task.model.response.allrepo.AllRepoResponse
-import com.hanaahany.task.model.response.allrepo.AllRepoResponseItem
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
 
-class ReposAdapter (var context: Context, private val onClick:(String,String) -> Unit) :
+class ReposAdapter(var context: Context, private val onClick: (String, String) -> Unit) :
     ListAdapter<AllRepoItem, ReposAdapter.ReposVH>(RecyclerDiffUtilOrdersItem()) {
     private lateinit var binding: RepoItemBinding
 
@@ -22,34 +19,25 @@ class ReposAdapter (var context: Context, private val onClick:(String,String) ->
         val inflater: LayoutInflater =
             parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = RepoItemBinding.inflate(inflater, parent, false)
-        Log.i("OrderFragmentAdapter","test1")
+        Log.i("OrderFragmentAdapter", "test1")
         return ReposVH(binding)
     }
 
     override fun onBindViewHolder(holder: ReposVH, position: Int) {
         val currentItem = getItem(position)
         holder.onBind(currentItem)
-        Log.i("OrderFragmentAdapter","test1")
+        Log.i("OrderFragmentAdapter", "test1")
 
     }
 
     inner class ReposVH(var binding: RepoItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
         fun onBind(currentItem: AllRepoItem) {
 
             binding.apply {
-                tvRepoOwner.text = currentItem.owner?.login
-
-                tvRepoName.text=currentItem.name
-                tvRepoDesc.text=currentItem.description
-                tvStarCount.text=currentItem.owner?.id.toString()
-                Glide.with(context).load(currentItem.owner?.avatarUrl).into(imageRepo)
-
-
+                repo = currentItem
             }
-            itemView.setOnClickListener{
-                onClick(currentItem.owner?.login!!,currentItem.name!!)
+            itemView.setOnClickListener {
+                onClick(currentItem.owner?.login!!, currentItem.name!!)
             }
 
         }

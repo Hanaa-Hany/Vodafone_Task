@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="repoDetails"
+            type="com.hanaahany.task.model.ui.repodetails.RepoDetails" />
+        <variable
+            name="converter"
+            type="com.hanaahany.task.utils.DataBindingUtils" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,6 +17,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
+
             android:id="@+id/image_repo_details"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
@@ -26,7 +33,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_repo_name"
             app:layout_constraintStart_toEndOf="@id/image_repo_details"
-            tools:text="Hanaa Hany" />
+            android:text="@{repoDetails.owner.login}" />
 
         <TextView
             android:id="@+id/tv_repo_name"
@@ -36,7 +43,7 @@
             app:layout_constraintStart_toEndOf="@id/image_repo_details"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            tools:text="Vodafone Task"
+            android:text="@{repoDetails.name}"
             app:layout_constraintBottom_toBottomOf="@id/image_repo_details"
 
             />
@@ -46,23 +53,23 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tv_repo_name"
             app:layout_constraintTop_toBottomOf="@id/tv_repo_name"
-            tools:text="10235"
+            android:text="@{repoDetails.owner.id.toString()}"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toStartOf="@id/tv_fork_repo_details"
-            android:drawableStart="@drawable/ic_star"
-            android:id="@+id/tv_star_repo_details"/>
+            android:id="@+id/tv_star_repo_details"
+            app:drawableStartCompat="@drawable/ic_star" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tv_star_repo_details"
             app:layout_constraintTop_toBottomOf="@id/tv_repo_name"
-            tools:text="10235"
+            android:text="@{repoDetails.forks.toString()}"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:drawableStart="@drawable/ic_fork"
-            android:id="@+id/tv_fork_repo_details"/>
+            android:id="@+id/tv_fork_repo_details"
+            app:drawableStartCompat="@drawable/ic_fork" />
 
         <TextView
             android:id="@+id/tv_description"
@@ -74,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/image_repo_details"
             app:layout_constraintTop_toBottomOf="@id/tv_star_repo_details"
-            tools:text="test" />
+            android:text="@{repoDetails.description}" />
 
 
         <androidx.constraintlayout.widget.Guideline

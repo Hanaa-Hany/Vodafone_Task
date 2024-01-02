@@ -68,11 +68,7 @@ class RepoDetailsFragment : BaseFragment<FragmentRepoDetailsBinding, RepoDetails
                     binding.lottiLoad.visibility=View.GONE
                     binding.lottiError.visibility=View.GONE
                   Log.i(TAG,"${state.data}")
-                    binding.tvForkRepoDetails.text=state.data.forks.toString()
-                    binding.tvRepoName.text=state.data.name
-                    binding.tvOwnerName.text=state.data.owner?.login
-                    binding.tvStarRepoDetails.text=state.data.owner?.id.toString()
-                    binding.tvDescription.text=state.data.description
+                     binding.repoDetails=state.data
                     Glide.with(this).load(state.data.owner?.avatarUrl).into(binding.imageRepoDetails)
                     viewModel.saveRepoDetailsFromDB(state.data)
                     viewModel.updateRepoDetailsFromDB(state.data)

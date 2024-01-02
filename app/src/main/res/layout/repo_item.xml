@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="repo"
+            type="com.hanaahany.task.model.ui.allrepo.AllRepoItem" />
+        <variable
+            name="converter"
+            type="com.hanaahany.task.utils.DataBindingUtils" />
 
     </data>
 
@@ -21,6 +27,7 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
+                app:imageUrl="@{repo.owner.avatarUrl}"
                 android:id="@+id/image_repo"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
@@ -28,12 +35,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:placeholder="@{@drawable/ic_launcher_background}"
                  />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Hanaa Hany"
+                android:text="@{repo.owner.login}"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:id="@+id/tv_repo_owner"
                 app:layout_constraintStart_toEndOf="@id/image_repo"
@@ -45,13 +53,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:drawableEnd="@drawable/ic_star"
-                tools:text="20231"
+                android:text="@{repo.owner.id.toString()}"
                 android:id="@+id/tv_star_count" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Vodafone Task"
+                android:text="@{repo.name}"
                 style="@style/main_title"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:id="@+id/tv_repo_name"
@@ -61,7 +69,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Vodafone Task Vodafone Task Vodafone Task Vodafone Task"
+                android:text="@{repo.description}"
                 android:id="@+id/tv_repo_desc"
                 android:layout_marginStart="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
