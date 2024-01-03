@@ -3,6 +3,7 @@ package com.hanaahany.task.remote
 import com.hanaahany.task.model.response.allrepo.AllRepoResponse
 import com.hanaahany.task.model.response.issues.IssuesResponse
 import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
+import com.hanaahany.task.model.response.search.SearchResponse
 import com.hanaahany.task.remote.services.Network
 import retrofit2.Response
 
@@ -21,6 +22,10 @@ class RemoteSourceImp private constructor() : RemoteSource {
 
     override suspend fun getIssues(login: String, name: String): Response<IssuesResponse> {
         return network.getIssues(login,name)
+    }
+
+    override suspend fun searchRepo(query: String): Response<SearchResponse> {
+        return network.searchRepo(query)
     }
 
     companion object {

@@ -7,6 +7,7 @@ import com.hanaahany.task.model.response.repodetails.RepoDetailsResponse
 import com.hanaahany.task.model.ui.allrepo.AllRepoItem
 import com.hanaahany.task.model.ui.issues.IssuesItem
 import com.hanaahany.task.model.ui.repodetails.RepoDetails
+import com.hanaahany.task.model.ui.search.Item
 import com.hanaahany.task.remote.ApiState
 import com.hanaahany.task.remote.RemoteSource
 import kotlinx.coroutines.flow.Flow
@@ -79,6 +80,26 @@ class RepoImp private constructor(
 
         }.catch {
             emit(ApiState.Failure(it.message!!))
+        }
+    }
+
+    override suspend fun searchRepo(query: String): Flow<ApiState<List<AllRepoItem>>> {
+        return flow {
+            emit(ApiState.Loading)
+            val filterAllRepo =
+                remoteSource.searchRepo(query)
+            if (filterAllRepo.isSuccessful) {
+                remoteSource.searchRepo(query).body()
+                    ?.let {
+                        emit(ApiState.Success(it.convertSearchResponseToAllRepoItem()))
+                    }
+            } else {
+                emit(ApiState.Failure(filterAllRepo.message()))
+            }
+
+        }.catch {
+            emit(ApiState.Failure(it.message!!))
+
         }
     }
 
