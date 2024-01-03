@@ -30,22 +30,28 @@ class RepoTest {
         fakeLocalSource = FakeLocalSourceImp()
         fakeRemoteSource = FakeRemoteSourceImp()
 
-
         repo = FakeRepoImp(
             fakeRemoteSource,
             fakeLocalSource
         )
     }
 
+
+
     @Test
     fun getAllRepo_AllRepo() = runBlocking {
         val result = repo.getAllRepo()
         result.collectLatest {
             when (it) {
-                is ApiState.Loading -> TODO()
-                is ApiState.Failure -> TODO()
+                is ApiState.Loading -> {
+
+                }
+                is ApiState.Failure -> {
+
+                }
                 is ApiState.Success -> {
-                    assertEquals(FakeData.fakeAllRepoItem().toData(), it.data)
+
+                    assertEquals(FakeData.fakeAllRepoResponse().convertToAllRepoResponseItem(), it.data)
                 }
             }
 
