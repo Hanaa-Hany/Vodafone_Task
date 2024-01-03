@@ -76,7 +76,7 @@ class FakeRepoImp(
     }
 
     override fun getRepoDetails(name: String): Flow<RepoDetailsEntity> {
-        return flowOf(FakeData.fakeRepoDetailsEntity())
+        return fakeLocalSourceImp.getRepoDetails("")
     }
 
     override suspend fun saveRepoDetails(repoDetailsEntity: RepoDetailsEntity): Long {

@@ -3,11 +3,14 @@ package com.hanaahany.task.data.source
 import com.hanaahany.task.local.LocalSource
 import com.hanaahany.task.model.entity.RepoDetailsEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 
 class FakeLocalSourceImp: LocalSource {
     override fun getRepoDetails(name: String): Flow<RepoDetailsEntity> {
-        return flow { FakeData.fakeRepoDetailsEntity()}
+        return flow {
+            emit(FakeData.fakeRepoDetailsEntity())
+        }
     }
 
     override suspend fun saveRepoDetails(repoDetailsEntity: RepoDetailsEntity): Long {

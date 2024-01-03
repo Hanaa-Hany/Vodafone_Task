@@ -113,7 +113,7 @@ class RepoImp private constructor(
     }
 
     override suspend fun updateRepoDetails(repoDetailsEntity: RepoDetailsEntity) {
-        return localSource.updateRepoDetails(repoDetailsEntity)
+         localSource.updateRepoDetails(repoDetailsEntity)
     }
 
     companion object {

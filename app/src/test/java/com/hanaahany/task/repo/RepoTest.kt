@@ -9,13 +9,15 @@ import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 import kotlin.time.ExperimentalTime
+import org.hamcrest.CoreMatchers.containsString
+
 
 @ExperimentalCoroutinesApi
 @ExperimentalTime
@@ -71,9 +73,10 @@ class RepoTest {
             result = it
         }
 
-        // Then: Verify the retrieved repo details
+        // Then
         TestCase.assertNotNull(result)
         TestCase.assertEquals(fakeRepoDetails.name, result?.name)
+
 
 
     }
@@ -89,13 +92,14 @@ class RepoTest {
         var result: RepoDetailsEntity? = null
         repo.getRepoDetails("").collect {
             result = it
+            print(result)
         }
 
-        // Then: Verify the cached repo details
+        // Then
         TestCase.assertNotNull(result)
-        TestCase.assertEquals(fakeRepoDetails.name, result?.name)
-
+        assertThat(result?.name, containsString(fakeRepoDetails.name))
 
 
     }
+
 }

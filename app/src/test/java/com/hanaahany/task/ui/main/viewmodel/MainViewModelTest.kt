@@ -46,7 +46,7 @@ class MainViewModelTest {
                 print(currentState)
             }
         }
-        delay(3000)
+        delay(500)
         assert(currentState is ApiState.Success)
         job.cancel()
     }
@@ -64,7 +64,7 @@ class MainViewModelTest {
                 print(currentState)
             }
         }
-        delay(3000)
+        delay(500)
         assert(currentState is ApiState.Failure)
         job.cancel()
     }
